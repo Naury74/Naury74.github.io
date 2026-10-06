@@ -13,7 +13,7 @@
 <section id="ko" lang="ko">
 <h1>차근 계정 삭제</h1>
 <p class="muted">개발자: Naury74 · 앱: 차근(Chageun)</p>
-<p>차근 계정은 클라우드 백업을 위해 선택해서 만드는 계정입니다. 계정을 삭제하면 계정과 클라우드에 저장된 백업이 모두 지워집니다.</p>
+<p>차근 계정은 백업을 위해 선택해서 만드는 계정입니다. 계정을 삭제하면 차근이 보관하는 계정 정보가 지워집니다. 백업은 사용자 본인의 Google 드라이브에 저장되므로 아래 안내에 따라 따로 지울 수 있습니다.</p>
 
 <h2>앱에서 삭제하기</h2>
 <ol>
@@ -27,12 +27,12 @@
 
 <h2>삭제되는 정보</h2>
 <ul>
-<li>계정 정보: 이메일 주소, Google 로그인 정보(이메일·이름), Firebase 사용자 ID</li>
-<li>클라우드 백업: 백업 파일(차량 정보, 기록, 사진, 앨범)과 백업 요약</li>
+<li>계정 정보: 이메일 주소, Firebase 사용자 ID(UID)</li>
 </ul>
 
 <h2>삭제되지 않는 정보</h2>
 <ul>
+<li><strong>Google 드라이브 백업</strong>: 백업은 사용자 본인의 Google 드라이브 앱 전용 폴더에 있고 차근 운영자는 접근할 수 없어 대신 지울 수 없습니다. Google 드라이브 설정 › 앱 관리에서 차근의 숨겨진 앱 데이터를 삭제하면 지워집니다.</li>
 <li><strong>기기에 저장된 데이터</strong>: 계정을 지워도 기기 안의 기록은 남습니다. 앱의 설정 › 데이터 › 모든 데이터 삭제 또는 앱 삭제로 지울 수 있습니다.</li>
 <li><strong>사용 통계·오류 보고</strong>: 계정과 연결되지 않은 정보로, Google Firebase의 보관 정책에 따라 자동으로 삭제됩니다.</li>
 </ul>
@@ -44,7 +44,7 @@
 <section id="en" lang="en">
 <h1>Chageun Account Deletion</h1>
 <p class="muted">Developer: Naury74 · App: Chageun</p>
-<p>A Chageun account is optional and is used only for cloud backup. Deleting your account deletes the account and all backups stored in the cloud.</p>
+<p>A Chageun account is optional and is used only for backup. Deleting your account deletes the account information Chageun keeps. Backups are stored in your own Google Drive, so you can delete them separately as described below.</p>
 
 <h2>Delete in the app</h2>
 <ol>
@@ -58,12 +58,12 @@
 
 <h2>What is deleted</h2>
 <ul>
-<li>Account information: email address, Google sign-in details (email and name), Firebase user ID</li>
-<li>Cloud backups: backup files (vehicle details, records, photos and album) and backup summaries</li>
+<li>Account information: email address and Firebase user ID (UID)</li>
 </ul>
 
 <h2>What is not deleted</h2>
 <ul>
+<li><strong>Google Drive backups</strong>: Backups are in the app-only folder of your own Google Drive. The Chageun developer cannot access them and so cannot delete them for you. Delete them by removing Chageun's hidden app data in Google Drive settings › Manage apps.</li>
 <li><strong>Data on your device</strong>: Records on your device stay after the account is deleted. You can remove them in Settings › Data › Delete all data, or by uninstalling the app.</li>
 <li><strong>Usage statistics and crash reports</strong>: These are not linked to your account and are deleted automatically under Google Firebase's retention policies.</li>
 </ul>

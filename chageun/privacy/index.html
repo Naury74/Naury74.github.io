@@ -13,10 +13,10 @@
 <section id="ko" lang="ko">
 <h1>차근 개인정보처리방침</h1>
 <p class="muted">시행일: 2026년 10월 6일</p>
-<p>차근(이하 “앱”)은 계정 없이도 모든 기능을 쓸 수 있는 차량 관리 앱입니다. 계정은 클라우드 백업을 원할 때만 선택해서 만듭니다. 이 방침은 앱이 어떤 정보를 저장하고, 어떤 정보가 기기 밖으로 나가는지 설명합니다.</p>
+<p>차근(이하 “앱”)은 계정 없이도 모든 기능을 쓸 수 있는 차량 관리 앱입니다. 계정은 백업을 원할 때만 선택해서 만듭니다. 이 방침은 앱이 어떤 정보를 저장하고, 어떤 정보가 기기 밖으로 나가는지 설명합니다.</p>
 
 <h2>1. 저장하는 정보</h2>
-<p>사용자가 직접 입력한 차량 정보, 주행거리, 정비·주유·점검 기록, 첨부한 사진·영수증, 내 차 사진과 내 차 앨범, 앱 설정을 저장합니다. 이 정보는 사용자의 기기에 저장되며, 아래 4번의 선택 클라우드 백업을 켜지 않는 한 개발자는 이 정보에 접근할 수 없습니다.</p>
+<p>사용자가 직접 입력한 차량 정보, 주행거리, 정비·주유·점검 기록, 첨부한 사진·영수증, 내 차 사진과 내 차 앨범, 앱 설정을 저장합니다. 이 정보는 사용자의 기기에 저장되며, 아래 3번의 선택 백업을 켜더라도 사용자 본인의 Google 드라이브에만 저장되므로 개발자는 이 정보에 접근할 수 없습니다.</p>
 <h3>기기 안에서만 처리하는 기능</h3>
 <ul>
 <li><strong>내 차 사진 배경 제거</strong>: 사진에서 차만 잘라 내는 처리를 Google ML Kit으로 기기 안에서 합니다. 사진은 기기 밖으로 보내지 않습니다.</li>
@@ -33,14 +33,13 @@
 </ul>
 <p>Google의 데이터 처리 방식은 <a href="https://policies.google.com/technologies/partner-sites">Google 파트너 사이트 정보 사용 방식</a>과 <a href="https://policies.google.com/privacy">Google 개인정보처리방침</a>을 참고하세요.</p>
 
-<h2>3. 선택 계정과 클라우드 백업</h2>
-<p>계정을 만들고 클라우드 백업을 쓰는 경우에만 아래 정보를 처리합니다. 계정 없이도 모든 기능을 쓸 수 있습니다.</p>
+<h2>3. 선택 계정과 Google 드라이브 백업</h2>
+<p>계정을 만들거나 백업을 쓰는 경우에만 아래 정보를 처리합니다. 계정 없이도 모든 기능을 쓸 수 있습니다.</p>
 <ul>
-<li><strong>수집 항목</strong>: 이메일 주소, Google 로그인을 쓰는 경우 Google 계정의 이메일과 이름, Firebase 사용자 ID(UID), 백업 파일(차량 정보, 기록, 사진, 앨범. 차량번호는 일부를 가린 값만 포함), 백업 요약(만든 시각, 크기, 기록·사진 수, 기기 모델, 앱 버전).</li>
+<li><strong>계정 정보</strong>: 이메일 주소와 Firebase 사용자 ID(UID)만 보관합니다. 로그인과 계정 관리를 위해 Google Firebase Authentication에서 처리하며, Google의 시스템을 통해 처리되는 과정에서 국외로 이전될 수 있습니다.</li>
+<li><strong>백업 위치</strong>: 백업을 선택한 경우 백업 파일(차량 정보, 기록, 사진, 앨범. 차량번호는 일부를 가린 값만 포함)은 사용자 본인의 Google 드라이브 앱 전용 폴더에 저장됩니다. 이 폴더는 차근 앱만 읽고 쓸 수 있으며, 차근 운영자는 백업에 접근할 수 없습니다. 백업은 사용자의 Google 드라이브 저장 공간을 사용합니다.</li>
 <li><strong>목적</strong>: 로그인, 백업 저장과 새 기기에서의 복원.</li>
-<li><strong>처리·보관 위치</strong>: Google Firebase(Authentication, Cloud Firestore, Cloud Storage). 데이터는 Google Cloud 서울 리전(asia-northeast3)에 저장하며, Google의 시스템을 통해 처리되는 과정에서 국외로 이전될 수 있습니다.</li>
-<li><strong>보관 기간</strong>: 계정당 최근 백업 5개를 보관하고 그보다 오래된 백업은 자동으로 지웁니다. 계정을 삭제하면 계정 정보와 모든 백업을 지체 없이 삭제합니다.</li>
-<li><strong>삭제 방법</strong>: 앱의 설정 › 계정·백업에서 백업을 하나씩 지우거나 계정을 삭제할 수 있습니다. 앱을 쓸 수 없는 경우 <a href="/chageun/delete-account/">계정 삭제 요청 페이지</a>를 참고하세요.</li>
+<li><strong>보관과 삭제</strong>: 계정을 삭제하면 계정 정보를 지체 없이 삭제합니다. 드라이브 백업은 사용자의 드라이브에 남으며, Google 드라이브 설정 › 앱 관리에서 차근의 숨겨진 앱 데이터를 지우면 삭제됩니다. 앱을 쓸 수 없는 경우 <a href="/chageun/delete-account/">계정 삭제 요청 페이지</a>를 참고하세요.</li>
 <li>전송 중에는 암호화되며, 다른 사용자는 내 백업에 접근할 수 없습니다.</li>
 </ul>
 
@@ -48,17 +47,17 @@
 <ul>
 <li>차량번호는 Android Keystore의 키로 암호화해 저장하고, 화면에는 일부를 가려서 보여 줍니다.</li>
 <li>사진을 첨부할 때 위치와 카메라 정보(EXIF)를 지웁니다.</li>
-<li>앱 데이터는 Android 자동 백업과 기기 이전 대상에서 제외됩니다. 클라우드 백업은 사용자가 계정을 만들어 직접 켠 경우에만 동작합니다.</li>
+<li>앱 데이터는 Android 자동 백업과 기기 이전 대상에서 제외됩니다. Google 드라이브 백업은 사용자가 직접 켠 경우에만 동작합니다.</li>
 </ul>
 
 <h2>5. 권한</h2>
 <ul>
-<li>인터넷·네트워크 상태: 광고, 사용 통계, 오류 보고 전송, 선택 클라우드 백업</li>
+<li>인터넷·네트워크 상태: 광고, 사용 통계, 오류 보고 전송, 선택 Google 드라이브 백업</li>
 <li>알림: 정비 시기 알림 (거부해도 앱을 쓸 수 있습니다)</li>
 </ul>
 
 <h2>6. 보관과 삭제</h2>
-<p>앱의 설정 › 데이터에서 전체 데이터를 ZIP 파일로 내보내거나, 가져오거나, 모두 삭제할 수 있습니다. 앱을 삭제하면 기기에 저장된 모든 데이터가 지워집니다. 클라우드 백업과 계정은 3번에 따라 삭제할 수 있습니다. 사용 통계·오류 보고로 Google에 전송된 정보는 계정과 연결되지 않으며 Google의 보관 정책을 따릅니다.</p>
+<p>앱의 설정 › 데이터에서 전체 데이터를 ZIP 파일로 내보내거나, 가져오거나, 모두 삭제할 수 있습니다. 앱을 삭제하면 기기에 저장된 모든 데이터가 지워집니다. 계정과 드라이브 백업은 3번에 따라 삭제할 수 있습니다. 사용 통계·오류 보고로 Google에 전송된 정보는 계정과 연결되지 않으며 Google의 보관 정책을 따릅니다.</p>
 
 <h2>7. 아동</h2>
 <p>앱은 만 14세 미만 아동을 대상으로 하지 않습니다.</p>
@@ -76,10 +75,10 @@
 <section id="en" lang="en">
 <h1>Chageun Privacy Policy</h1>
 <p class="muted">Effective date: October 6, 2026</p>
-<p>Chageun (“the app”) is a car maintenance app that you can fully use without an account. An account is optional and only needed if you want cloud backup. This policy explains what the app stores and what leaves your device.</p>
+<p>Chageun (“the app”) is a car maintenance app that you can fully use without an account. An account is optional and only needed if you want backup. This policy explains what the app stores and what leaves your device.</p>
 
 <h2>1. What is stored</h2>
-<p>Vehicle details you enter, mileage, maintenance, fuel and inspection records, attached photos and receipts, your car photo and car album, and app settings. This is stored on your device, and the developer cannot access it unless you turn on the optional cloud backup described in section 3.</p>
+<p>Vehicle details you enter, mileage, maintenance, fuel and inspection records, attached photos and receipts, your car photo and car album, and app settings. This is stored on your device. Even if you turn on the optional backup described in section 3, it is saved only to your own Google Drive, so the developer cannot access it.</p>
 <h3>Features processed only on your device</h3>
 <ul>
 <li><strong>Car photo background removal</strong>: Cutting your car out of a photo is done on your device with Google ML Kit. The photo is not sent anywhere.</li>
@@ -96,14 +95,13 @@
 </ul>
 <p>See <a href="https://policies.google.com/technologies/partner-sites">How Google uses information from sites or apps that use its services</a> and the <a href="https://policies.google.com/privacy">Google Privacy Policy</a>.</p>
 
-<h2>3. Optional account and cloud backup</h2>
-<p>The following is processed only if you create an account and use cloud backup. Every feature works without an account.</p>
+<h2>3. Optional account and Google Drive backup</h2>
+<p>The following is processed only if you create an account or use backup. Every feature works without an account.</p>
 <ul>
-<li><strong>What is collected</strong>: Your email address; if you sign in with Google, the email and name of your Google account; your Firebase user ID (UID); backup files (vehicle details, records, photos and album, with the plate number included only in masked form); and a backup summary (creation time, size, number of records and photos, device model, app version).</li>
+<li><strong>Account information</strong>: Only your email address and Firebase user ID (UID) are kept. They are processed by Google Firebase Authentication for sign-in and account management and may be transferred outside Korea while being processed on Google's systems.</li>
+<li><strong>Where backups are stored</strong>: If you choose to back up, backup files (vehicle details, records, photos and album, with the plate number included only in masked form) are saved to the app-only folder in your own Google Drive. Only the Chageun app can read and write that folder, and the Chageun developer cannot access your backups. Backups use your Google Drive storage.</li>
 <li><strong>Purpose</strong>: Signing in, storing backups, and restoring them on a new device.</li>
-<li><strong>Where it is processed and stored</strong>: Google Firebase (Authentication, Cloud Firestore, Cloud Storage). Data is stored in the Google Cloud Seoul region (asia-northeast3) and may be transferred outside Korea while being processed on Google's systems.</li>
-<li><strong>Retention</strong>: The 5 most recent backups are kept per account, and older backups are deleted automatically. When you delete your account, your account and all backups are deleted without delay.</li>
-<li><strong>How to delete</strong>: In Settings › Account &amp; backup you can delete individual backups or your account. If you cannot use the app, see the <a href="/chageun/delete-account/">account deletion request page</a>.</li>
+<li><strong>Retention and deletion</strong>: When you delete your account, your account information is deleted without delay. Drive backups stay in your Drive; you can delete them by removing Chageun's hidden app data in Google Drive settings › Manage apps. If you cannot use the app, see the <a href="/chageun/delete-account/">account deletion request page</a>.</li>
 <li>Data is encrypted in transit, and other users cannot access your backups.</li>
 </ul>
 
@@ -111,17 +109,17 @@
 <ul>
 <li>The plate number is encrypted with a key kept in the Android Keystore and is shown masked.</li>
 <li>Location and camera details (EXIF) are removed from photos when they are attached.</li>
-<li>App data is excluded from Android auto backup and device transfer. Cloud backup runs only if you create an account and turn it on.</li>
+<li>App data is excluded from Android auto backup and device transfer. Google Drive backup runs only if you turn it on.</li>
 </ul>
 
 <h2>5. Permissions</h2>
 <ul>
-<li>Internet and network state: ads, usage statistics, crash reports and the optional cloud backup</li>
+<li>Internet and network state: ads, usage statistics, crash reports and the optional Google Drive backup</li>
 <li>Notifications: maintenance reminders (the app works without them)</li>
 </ul>
 
 <h2>6. Retention and deletion</h2>
-<p>Settings › Data lets you export everything to a ZIP file, restore it, or delete it all. Uninstalling the app removes all data stored on the device. Cloud backups and your account can be deleted as described in section 3. Usage statistics and crash reports sent to Google are not linked to your account and follow Google's retention policies.</p>
+<p>Settings › Data lets you export everything to a ZIP file, restore it, or delete it all. Uninstalling the app removes all data stored on the device. Your account and Drive backups can be deleted as described in section 3. Usage statistics and crash reports sent to Google are not linked to your account and follow Google's retention policies.</p>
 
 <h2>7. Children</h2>
 <p>The app is not directed to children under 14.</p>
