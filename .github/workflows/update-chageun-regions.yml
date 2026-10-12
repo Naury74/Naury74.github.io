@@ -1,0 +1,94 @@
+# 차근 앱 날씨 지역 목록(chageun/data/regions)을 기상청 원본으로 매달 확인한다.
+# 바뀐 게 있으면 새 버전 CSV와 regions.json을 담은 PR을 연다. main에는 직접 올리지 않는다(사람이 보고 합친다).
+# 저장소 설정 Settings › Actions › General › "Allow GitHub Actions to create and approve pull requests"가 켜져 있어야 PR을 열 수 있다.
+name: 차근 지역 목록 갱신
+
+on:
+  schedule:
+    # 매달 2일 03:00 KST (UTC 1일 18:00)
+    - cron: "0 18 1 * *"
+  workflow_dispatch:
+    inputs:
+      xlsx_url:
+        description: "자동으로 못 받을 때만: 참고문서 zip이나 격자_위경도 xlsx 주소"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: update-chageun-regions
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: openpyxl 설치
+        run: pip install openpyxl
+
+      - name: 기상청 격자_위경도 xlsx 받기
+        env:
+          XLSX_URL: ${{ inputs.xlsx_url }}
+        run: |
+          if [ -n "$XLSX_URL" ]; then
+            python3 tools/regions/fetch_kma_grid.py "$RUNNER_TEMP/grid.xlsx" --url "$XLSX_URL"
+          else
+            python3 tools/regions/fetch_kma_grid.py "$RUNNER_TEMP/grid.xlsx"
+          fi
+          sha256sum "$RUNNER_TEMP/grid.xlsx"
+
+      - name: CSV로 바꾸기
+        run: |
+          python3 tools/regions/build-korea-regions.py "$RUNNER_TEMP/grid.xlsx" > "$RUNNER_TEMP/new.csv"
+          sha256sum "$RUNNER_TEMP/new.csv"
+
+      - name: 최신 버전과 비교해 새 버전 만들기
+        id: update
+        run: |
+          python3 tools/regions/update_regions.py "$RUNNER_TEMP/new.csv" \
+            --dir chageun/data/regions --summary-out "$RUNNER_TEMP/summary.md"
+          if [ -n "$(git status --porcelain -- chageun/data/regions)" ]; then
+            version=$(python3 -c 'import json; print(json.load(open("chageun/data/regions/regions.json"))["version"])')
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "version=$version" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: PR 열기
+        if: steps.update.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ steps.update.outputs.version }}
+        run: |
+          branch="chageun-regions/$VERSION"
+          title="차근 지역 목록 $VERSION 갱신"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -c "$branch"
+          git add chageun/data/regions
+          git commit -m "$title"
+          # 같은 버전을 다시 돌린 경우 브랜치를 새로 덮는다.
+          git push --force origin "$branch"
+          {
+            cat "$RUNNER_TEMP/summary.md"
+            echo
+            echo "---"
+            echo "원본: 공공데이터포털 15084084 참고문서 격자_위경도 xlsx (이용허락범위 저작자표시, 제공 기상청)"
+            echo "자동으로 만든 PR입니다. 요약과 renamedCodes를 확인하고 합쳐 주세요. 합치면 앱이 다음 확인 때 새 목록을 받습니다."
+          } > "$RUNNER_TEMP/body.md"
+          if [ -n "$(gh pr list --head "$branch" --state open --json number --jq '.[].number')" ]; then
+            gh pr edit "$branch" --title "$title" --body-file "$RUNNER_TEMP/body.md"
+          else
+            gh pr create --base main --head "$branch" --title "$title" --body-file "$RUNNER_TEMP/body.md"
+          fi
